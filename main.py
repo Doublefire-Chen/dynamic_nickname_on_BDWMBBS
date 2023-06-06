@@ -148,9 +148,9 @@ while True:
     today_now = datetime.datetime.now()
     today_at_0000 = today_now.replace(hour=0, minute=0, second=0)
     today_at_0130 = today_now.replace(hour=1, minute=30, second=0)
-    today_at_0659 = today_now.replace(hour=6, minute=59, second=0)
+    today_at_0659 = today_now.replace(hour=6, minute=59, second=59)
     today_at_0700 = today_now.replace(hour=7, minute=00, second=0)
-    today_at_2359 = today_now.replace(hour=23, minute=59, second=0)
+    today_at_2359 = today_now.replace(hour=23, minute=59, second=59)
     if (today_at_0000 <= today_now <=
             today_at_0130) or (today_at_0700 <= today_now <= today_at_2359):
         try:
@@ -159,10 +159,12 @@ while True:
             print(f"Error: {e}")
         print("time.sleep(6)")
         time.sleep(6)
-    if (today_at_0130 <= today_now <= today_at_0659):
+    elif (today_at_0130 <= today_now <= today_at_0659):
         try:
             MyBBS.update_nickname(calculate_time())
         except Exception as e:
             print(f"Error: {e}")
         print("time.sleep(2.4)")
         time.sleep(2.4)
+    else:
+        time.sleep(6)
